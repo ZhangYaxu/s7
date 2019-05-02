@@ -30,7 +30,7 @@ type S7BlockInfo struct {
 
 func (mb *client) DBFill(dbnumber int, fillChar int) (err error) {
 	// bi := S7BlockInfo{}
-	bi, err := mb.GetAgBlockInfo(blockDB, dbnumber)
+	bi, err := mb.GetAgBlockInfo(BlockDB, dbnumber)
 	if err == nil {
 		buffer := make([]byte, bi.MC7Size)
 		for c := 0; c < bi.MC7Size; c++ {
@@ -43,7 +43,7 @@ func (mb *client) DBFill(dbnumber int, fillChar int) (err error) {
 
 func (mb *client) DBGet(dbnumber int, usrdata []byte, size int) (err error) {
 	// bi := S7BlockInfo{}
-	bi, err := mb.GetAgBlockInfo(blockDB, dbnumber)
+	bi, err := mb.GetAgBlockInfo(BlockDB, dbnumber)
 	if err == nil {
 		if dbSize := bi.MC7Size; dbSize <= len(usrdata) {
 			size = dbSize

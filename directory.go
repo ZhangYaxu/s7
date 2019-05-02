@@ -7,13 +7,13 @@ import (
 // Copyright 2018 Trung Hieu Le. All rights reserved.
 const (
 	// Block type byte
-	blockOB  = 56
-	blockDB  = 65
-	blockSDB = 66
-	blockFC  = 67
-	blockSFC = 68
-	blockFB  = 69
-	blockSFB = 70
+	BlockOB  = 56
+	BlockDB  = 65
+	BlockSDB = 66
+	BlockFC  = 67
+	BlockSFC = 68
+	BlockFB  = 69
+	BlockSFB = 70
 )
 
 //S7BlocksList Block List
@@ -29,16 +29,16 @@ type S7BlocksList struct {
 
 //implement list block
 func (mb *client) PGListBlocks() (list S7BlocksList, err error) {
-	list.OBList, err = mb.pgBlockList(blockOB)
+	list.OBList, err = mb.pgBlockList(BlockOB)
 	//debug
 	fmt.Printf("%v", list.DBList)
-	list.DBList, err = mb.pgBlockList(blockDB)
-	list.FCList, err = mb.pgBlockList(blockFC)
-	list.OBList, err = mb.pgBlockList(blockOB)
-	list.FBList, err = mb.pgBlockList(blockFB)
-	list.SDBList, err = mb.pgBlockList(blockSDB)
-	list.SFBList, err = mb.pgBlockList(blockSFB)
-	list.SFCList, err = mb.pgBlockList(blockSFC)
+	list.DBList, err = mb.pgBlockList(BlockDB)
+	list.FCList, err = mb.pgBlockList(BlockFC)
+	list.OBList, err = mb.pgBlockList(BlockOB)
+	list.FBList, err = mb.pgBlockList(BlockFB)
+	list.SDBList, err = mb.pgBlockList(BlockSDB)
+	list.SFBList, err = mb.pgBlockList(BlockSFB)
+	list.SFCList, err = mb.pgBlockList(BlockSFC)
 	return
 }
 
@@ -47,20 +47,20 @@ func (mb *client) pgBlockList(blockType byte) (arr []int, err error) {
 	copy(bl, s7PGBlockListTelegram)
 	bl = append(bl, make([]byte, 1)...)
 	switch blockType {
-	case blockDB:
-		bl[len(bl)-1] = blockDB
-	case blockOB:
-		bl[len(bl)-1] = blockOB
-	case blockSDB:
-		bl[len(bl)-1] = blockSDB
-	case blockFC:
-		bl[len(bl)-1] = blockFC
-	case blockSFC:
-		bl[len(bl)-1] = blockSFC
-	case blockFB:
-		bl[len(bl)-1] = blockFB
-	case blockSFB:
-		bl[len(bl)-1] = blockSFB
+	case BlockDB:
+		bl[len(bl)-1] = BlockDB
+	case BlockOB:
+		bl[len(bl)-1] = BlockOB
+	case BlockSDB:
+		bl[len(bl)-1] = BlockSDB
+	case BlockFC:
+		bl[len(bl)-1] = BlockFC
+	case BlockSFC:
+		bl[len(bl)-1] = BlockSFC
+	case BlockFB:
+		bl[len(bl)-1] = BlockFB
+	case BlockSFB:
+		bl[len(bl)-1] = BlockSFB
 	default:
 		return
 	}
